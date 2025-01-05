@@ -1,4 +1,4 @@
-﻿namespace ITstudy.Entities
+﻿namespace ITstudy.Data.Entities
 {
     public class Categories
     {

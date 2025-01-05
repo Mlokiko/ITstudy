@@ -1,4 +1,4 @@
-﻿using ITstudy.Entities;
+﻿using ITstudy.Data.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
@@ -16,7 +16,7 @@ namespace ITstudy.Data
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Ranks> Ranks { get; set; }
         public DbSet<Threads> Threads { get; set; }
-        public DbSet<Users> Users { get; set; }
+        public DbSet<SiteUsers> SiteUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -63,27 +63,27 @@ namespace ITstudy.Data
                 .IsRequired()
                 .HasDefaultValueSql("getdate()");
 
-            builder.Entity<Users>()
+            builder.Entity<SiteUsers>()
                 .Property(c => c.UserName)
                 .IsRequired();
 
-            builder.Entity<Users>()
+            builder.Entity<SiteUsers>()
                 .Property(c => c.PasswordHash)
                 .IsRequired();
 
             // Jak wymusić żeby było unique?
-            builder.Entity<Users>()
+            builder.Entity<SiteUsers>()
                 .Property(c => c.Email)
                 .IsRequired();
 
-            builder.Entity<Users>()
+            builder.Entity<SiteUsers>()
                 .Property(c => c.JoinDate)
                 .IsRequired()
                 .HasDefaultValueSql("getdate()");
 
-            builder.Entity<Users>()
-                .Property(c => c.Ranks)
-                .IsRequired();
+            //builder.Entity<SiteUsers>()
+            //    .Property(c => c.Rank)
+            //    .IsRequired();
         }
     }
 }

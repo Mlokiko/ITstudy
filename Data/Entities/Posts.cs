@@ -1,4 +1,4 @@
-﻿namespace ITstudy.Entities
+﻿namespace ITstudy.Data.Entities
 {
     public class Posts
     {
@@ -10,7 +10,7 @@
         public int ThreadId { get; set; }
 
         // Powinno podłączyć/powiązać z inną tabelą
-        public virtual Users User { get; set; }
-        public virtual Threads Thread {  get; set; }
+        public virtual SiteUsers? User { get; set; }
+        public virtual Threads? Thread { get; set; }
     }
 }
