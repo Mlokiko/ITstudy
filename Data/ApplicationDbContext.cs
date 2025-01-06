@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Identity.Client;
+using System.Reflection.Emit;
 
 namespace ITstudy.Data
 {
@@ -20,6 +21,24 @@ namespace ITstudy.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<SiteUsers>()
+            .HasOne(s => s.Rank)
+            .WithMany()
+            .HasForeignKey(s => s.RankId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Posts>()
+            .HasOne(p => p.User)
+            .WithMany()
+            .HasForeignKey(p => p.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Posts>()
+            .HasOne(p => p.Thread)
+            .WithMany()
+            .HasForeignKey(p => p.ThreadId)
+            .OnDelete(DeleteBehavior.Cascade);
+
             // Opis categori wymagany i nie większy od 255, Name wymagane
             builder.Entity<Categories>()
                 .Property(c => c.Description)
@@ -34,7 +53,7 @@ namespace ITstudy.Data
             builder.Entity<Posts>()
                 .Property(c => c.CreatedDate)
                 .IsRequired()
-                .HasDefaultValueSql("getdate()");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
             // Można ustawić max długość postu tutaj, nwm czy chcemy czy nie, raczej chcemy, ale na jaką wartość?
             // Sprawdzić czy będzie działać z dłuższymi wartościami, tzn, czy tworzy wewnętrznie varchara, text czy co w bazie danych
@@ -46,7 +65,7 @@ namespace ITstudy.Data
             builder.Entity<Posts>()
                 .Property(c => c.Edited)
                 .IsRequired()
-                .HasDefaultValueSql("0");
+                .HasDefaultValue(false);
 
             // UserId i ThreadID z Posts nie daje tutaj jako required, sprawdzmy czy bez tego działa
 
@@ -61,7 +80,7 @@ namespace ITstudy.Data
             builder.Entity<Threads>()
                 .Property(c => c.CreatedAt)
                 .IsRequired()
-                .HasDefaultValueSql("getdate()");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
             builder.Entity<SiteUsers>()
                 .Property(c => c.UserName)
@@ -79,11 +98,15 @@ namespace ITstudy.Data
             builder.Entity<SiteUsers>()
                 .Property(c => c.JoinDate)
                 .IsRequired()
-                .HasDefaultValueSql("getdate()");
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
+            // Raczej rozwiązane przez relacje
             //builder.Entity<SiteUsers>()
             //    .Property(c => c.Rank)
             //    .IsRequired();
+
+            // Czy to jest potrzebne? chat napisał to w momencie jak probowałem relacje naprawić
+            base.OnModelCreating(builder);
         }
     }
 }

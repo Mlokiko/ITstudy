@@ -11,8 +11,8 @@ namespace ITstudy.Data.Entities
         public DateTime JoinDate { get; set; } // znowu, current time ustawić
         public string ProfilePictureURL { get; set; }                               // to jako nieliczne nie jest wymagane
         public string Bio { get; set; }                                            // to jako nieliczne nie jest wymagane
-        //public int RankId { get; set; }
+        public int RankId { get; set; }
 
-        //public virtual Ranks Rank { get; set; }
+        public virtual Ranks Rank { get; set; }
     }
 }
