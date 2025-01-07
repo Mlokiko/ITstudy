@@ -2,7 +2,7 @@
 
 namespace ITstudy.Data.Entities
 {
-    public class SiteUsers
+    public class Users
     {
         public int Id { get; set; }
         public required string UserName { get; set; }  // takie required będzie działać?

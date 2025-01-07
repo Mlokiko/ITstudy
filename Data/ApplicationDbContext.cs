@@ -17,11 +17,11 @@ namespace ITstudy.Data
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Ranks> Ranks { get; set; }
         public DbSet<Threads> Threads { get; set; }
-        public DbSet<SiteUsers> SiteUsers { get; set; }
+        public DbSet<Users> SiteUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<SiteUsers>()
+            builder.Entity<Users>()
             .HasOne(s => s.Rank)
             .WithMany()
             .HasForeignKey(s => s.RankId)
@@ -82,20 +82,20 @@ namespace ITstudy.Data
                 .IsRequired()
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
-            builder.Entity<SiteUsers>()
+            builder.Entity<Users>()
                 .Property(c => c.UserName)
                 .IsRequired();
 
-            builder.Entity<SiteUsers>()
+            builder.Entity<Users>()
                 .Property(c => c.PasswordHash)
                 .IsRequired();
 
             // Jak wymusić żeby było unique?
-            builder.Entity<SiteUsers>()
+            builder.Entity<Users>()
                 .Property(c => c.Email)
                 .IsRequired();
 
-            builder.Entity<SiteUsers>()
+            builder.Entity<Users>()
                 .Property(c => c.JoinDate)
                 .IsRequired()
                 .HasDefaultValueSql("CURRENT_TIMESTAMP");

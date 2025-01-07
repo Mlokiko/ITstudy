@@ -10,7 +10,7 @@
         public int ThreadId { get; set; }
 
         // Powinno podłączyć/powiązać z inną tabelą
-        public virtual SiteUsers? User { get; set; }
+        public virtual Users? User { get; set; }
         public virtual Threads? Thread { get; set; }
     }
 }

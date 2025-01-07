@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\Migrations\**" />
     <Compile Remove="Views\Nowy folder1\**" />
+    <Content Remove="Data\Migrations\**" />
     <Content Remove="Views\Nowy folder1\**" />
+    <EmbeddedResource Remove="Data\Migrations\**" />
     <EmbeddedResource Remove="Views\Nowy folder1\**" />
+    <None Remove="Data\Migrations\**" />
     <None Remove="Views\Nowy folder1\**" />
   </ItemGroup>
 
@@ -22,16 +26,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\Migrations\" />
-    <Folder Include="Views\FAQ\" />
-    <Folder Include="Views\AddPost\" />
-    <Folder Include="Views\Rules\" />
-    <Folder Include="Views\RecentThreads\" />
-    <Folder Include="Views\Readme\" />
-    <Folder Include="Views\ThreadsWithoutResponse\" />
   </ItemGroup>
 
 </Project>
