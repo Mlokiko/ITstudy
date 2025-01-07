@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Nowy folder1\**" />
+    <Content Remove="Views\Nowy folder1\**" />
+    <EmbeddedResource Remove="Views\Nowy folder1\**" />
+    <None Remove="Views\Nowy folder1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.11" />
@@ -19,6 +26,12 @@
 
   <ItemGroup>
     <Folder Include="Data\Migrations\" />
+    <Folder Include="Views\FAQ\" />
+    <Folder Include="Views\AddPost\" />
+    <Folder Include="Views\Rules\" />
+    <Folder Include="Views\RecentThreads\" />
+    <Folder Include="Views\Readme\" />
+    <Folder Include="Views\ThreadsWithoutResponse\" />
   </ItemGroup>
 
 </Project>
